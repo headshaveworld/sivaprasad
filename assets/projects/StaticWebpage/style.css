@@ -69,7 +69,6 @@ nav {
 .big-title {
     position: absolute;
     z-index: 30;
-    line-height: 4rem;
     top: calc(50% - 2rem);
     width: 100%;
     text-align: center;
