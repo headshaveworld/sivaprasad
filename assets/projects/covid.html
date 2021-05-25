@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="covid.png" type="image/x-icon" />
+  <title>Covid-19</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <!-- Jquery link -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Css styling -->
+  <style>
+    body {
+      background-color: rgb(161, 161, 161);
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+    @media (min-width: 320px) and (max-width: 425px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      img {
+        width: 50%;
+        padding-top: 2%;
+      }
+
+      .display-4 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1 class="text-center display-5 text-primary">COVID-19 TRACKER</h1>
+    <br /><br />
+    <h2 class="display-6"><mark>India Covid-19 Info</mark></h2>
+    <p id="date"></p>
+
+    <!-- Table info -->
+
+    <table class="table table-hover">
+      <tr>
+        <th>Country :</th>
+        <td id="country"></td>
+      </tr>
+      <tr>
+        <th>NewConfirmed :</th>
+        <td id="newconfirmed"></td>
+      </tr>
+      <tr>
+        <th>NewDeaths :</th>
+        <td id="newdeaths"></td>
+      </tr>
+      <tr>
+        <th>NewRecovered :</th>
+        <td id="newrecovered"></td>
+      </tr>
+      <tr>
+        <th>TotalConfirmed :</th>
+        <td id="totalconfirmed"></td>
+      </tr>
+      <tr>
+        <th>TotalDeaths :</th>
+        <td id="totaldeaths"></td>
+      </tr>
+      <tr>
+        <th>TotalRecovered :</th>
+        <td id="totalrecovered"></td>
+      </tr>
+      <tr>
+        <th>DeathRatio :</th>
+        <td id="deathratio"></td>
+      </tr>
+    </table>
+
+    <p class="lead">
+      <a onclick="window.location.reload();" class="btn btn-primary btn-lg" href="#" role="button">Refresh now</a>
+    </p>
+  </div>
+
+  <script>
+    function init() {
+      const url = "https://api.covid19api.com/summary";
+
+      $.get(url, function (data) {
+        console.log(data.Global.TotalConfirmed);
+        const date = data.Countries[76].Date;
+        const co = data.Countries[76].Country;
+        const nc = data.Countries[76].NewConfirmed;
+        const nd = data.Countries[76].NewDeaths;
+        const nr = data.Countries[76].NewRecovered;
+        const tc = data.Countries[76].TotalConfirmed;
+        const td = data.Countries[76].TotalDeaths;
+        const tre = data.Countries[76].TotalRecovered;
+        const deathRatio = (td / tc) * 100;
+        const dr = deathRatio.toFixed(2);
+
+        $("#date").html(date);
+        $("#country").html(co);
+        $("#newconfirmed").html(nc);
+        $("#newdeaths").html(nd);
+        $("#newrecovered").html(nr);
+        $("#totalconfirmed").html(tc);
+        $("#totaldeaths").html(td);
+        $("#totalrecovered").html(tre);
+        $("#deathratio").html(dr + " %");
+      });
+    }
+    init();
+  </script>
+</body>
+
+</html>
