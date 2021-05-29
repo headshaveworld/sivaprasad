@@ -166,7 +166,7 @@ img {
     top: 1rem;
     right: 1rem;
     font-size: 2rem;
-    color: var(--first-color-dark);
+    color: white;
     cursor: pointer;
 }
 
@@ -545,7 +545,8 @@ img {
 
 .footer__copy {
     font-size: var(--smaller-font-size);
-    color: var(--text-color);
+    color: white;
+    font-weight: 100;
 }
 
 /*---- MEDIA QUERIES ----*/
